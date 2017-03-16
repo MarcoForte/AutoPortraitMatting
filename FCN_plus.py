@@ -3,7 +3,7 @@ import tensorflow as tf
 import numpy as np
 
 import TensorflowUtils_plus as utils
-import read_MITSceneParsingData as scene_parsing
+#import read_MITSceneParsingData as scene_parsing
 import datetime
 #import BatchDatsetReader as dataset
 from portrait_plus import BatchDatset, TestDataset
@@ -242,7 +242,7 @@ def pred():
     sft = tf.nn.softmax(logits)
     test_dataset_reader = TestDataset('data/testlist.mat')
     with tf.Session() as sess:
-        sess.run(tf.initialize_all_variables())
+        sess.run(tf.global_variables_initializer())
         ckpt = tf.train.get_checkpoint_state(FLAGS.logs_dir)
         saver = tf.train.Saver()
         if ckpt and ckpt.model_checkpoint_path:
